@@ -1,0 +1,34 @@
+<div *ngIf="recipe">
+  <h3><label for="name">Name:</label></h3>
+  <input type="text" id="name" [(ngModel)]="recipe.name">
+
+  <h3>Vegan:</h3>
+  <input type="radio" id="vegan-true" [(ngModel)]="recipe.vegan" [value]="true">
+  <label for="vegan-true">Yes</label><br>
+  <input type="radio" id="vegan-false" [(ngModel)]="recipe.vegan" [value]="false">
+  <label for="vegan-false">No</label><br>
+
+  <h3><label for="servings">Servings:</label></h3>
+  <input type="number" id="servings" min="1" max="20" [(ngModel)]="recipe.servings">
+
+  <h3>Ingredients:</h3>
+  <ul>
+    <li *ngFor="let ingredient of recipe.ingredients">
+      {{ingredient}}
+      <button (click)="removeIngredient(ingredient)">Remove</button>
+    </li>
+  </ul>
+
+  <p><label for="ingredient">Add ingredient:</label></p>
+  <input id="ingredient" #ingredient>
+  <button (click)="addIngredient(ingredient.value); ingredient.value=''">Add</button>
+
+  <h3><label for="instructions">Instructions:</label></h3>
+  <textarea id="instructions" rows="10" cols="150" [(ngModel)]="recipe.instructions"></textarea>
+
+  <h3>Actions:</h3>
+  <button (click)="updateRecipe()">Save</button>
+  <button (click)="back()">Back</button>
+</div>
+
+
